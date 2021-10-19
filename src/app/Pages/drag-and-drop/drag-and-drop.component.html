@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <!--title-->
+  <p class="title">Angular Material - Drag and Drop</p>
+  <hr />
+
+  <!--drag and drop-->
+  <div class="content">
+    <!--Completed-->
+    <div class="example-container">
+      <h2>Completed</h2>
+      <div
+        cdkDropList
+        #completedList="cdkDropList"
+        [cdkDropListData]="completed"
+        [cdkDropListConnectedTo]="[inProgressList, todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of completed" cdkDrag>
+          {{ item }}
+        </div>
+      </div>
+    </div>
+    <!--InProgress-->
+    <div class="example-container">
+      <h2>InProgress</h2>
+
+      <div
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="inProgress"
+        [cdkDropListConnectedTo]="[completedList, todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
+          {{ item }}
+        </div>
+      </div>
+    </div>
+    <!--To-do-->
+    <div class="example-container">
+      <h2>To-Do</h2>
+
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[completedList, inProgressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>
+          {{ item }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
