@@ -1,23 +1,21 @@
 <!--new data-->
-<div class="new-data-container" [style.display]="popDisplay ? 'flex' : 'none'">
+<div class="new-data-container" [formGroup]="addItemForm" [style.display]="popDisplay ? 'flex' : 'none'">
   <p class="title">Add new Task</p>
   <div class="new-data">
     <p>Enter Task name</p>
-    <input #taskNameInput type="text" placeholder="task name" [value]="myDefaultValue"/>
+    <input formControlName="taskName" type="text" placeholder="task name" [value]="myDefaultValue"/>
   </div>
   <div class="new-data">
     <p>Task type</p>
-    <select #taskTypeInput>
+    <select formControlName="taskType">
       <option>Completed</option>
       <option>In progress</option>
       <option>To-do</option>
     </select>
   </div>
   <div class="new-data">
-    <button (click)="save(taskNameInput.value, taskTypeInput.value)">
-      Save
-    </button>
     <button (click)="cancel()">Cancel</button>
+    <button (click)="save()">Save</button>
   </div>
 </div>
 <div class="wrapper" [style.display]="taskDisplay ? 'block' : 'none'">

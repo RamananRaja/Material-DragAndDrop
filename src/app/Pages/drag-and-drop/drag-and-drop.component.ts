@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-drag-and-drop',
   templateUrl: './drag-and-drop.component.html',
@@ -14,7 +15,10 @@ export class DragAndDropComponent implements OnInit {
   popDisplay: boolean = false;
   taskDisplay: boolean = true;
   myDefaultValue: string ="";
-
+  addItemForm = new FormGroup({
+    taskName: new FormControl(),
+    taskType: new FormControl()
+  });
   completed = [
     'Get to work',
     'Pick up groceries',
@@ -50,14 +54,15 @@ export class DragAndDropComponent implements OnInit {
   }
   addItem() {
     console.log("add item");
-    
+    this.addItemForm.reset();
     this.popDisplay = true;
     this.taskDisplay = false;
   }
-  save(taskNameInput: string, taskTypeInput: string) {
+  save() {
+    var taskNameInput = this.addItemForm.get('taskName')?.value;
+    var taskTypeInput = this.addItemForm.get('taskType')?.value;
     console.log(taskNameInput);
-    console.log(taskTypeInput);
-    if (taskNameInput != '') {
+    if (taskNameInput != null && taskNameInput != '') {
       if(taskTypeInput == 'Completed')
         this.completed.push(taskNameInput);
       else if(taskTypeInput == 'In progress')
