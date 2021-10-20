@@ -11,6 +11,9 @@ export class DragAndDropComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  popDisplay: boolean = false;
+  taskDisplay: boolean = true;
+  myDefaultValue: string ="";
 
   completed = [
     'Get to work',
@@ -45,5 +48,31 @@ export class DragAndDropComponent implements OnInit {
         event.currentIndex);
     }
   }
-
+  addItem() {
+    console.log("add item");
+    
+    this.popDisplay = true;
+    this.taskDisplay = false;
+  }
+  save(taskNameInput: string, taskTypeInput: string) {
+    console.log(taskNameInput);
+    console.log(taskTypeInput);
+    if (taskNameInput != '') {
+      if(taskTypeInput == 'Completed')
+        this.completed.push(taskNameInput);
+      else if(taskTypeInput == 'In progress')
+        this.inProgress.push(taskNameInput);
+      else if(taskTypeInput == 'To-do')
+        this.todo.push(taskNameInput);
+      this.popDisplay = false;
+      this.taskDisplay = true;
+    }
+    else {
+      window.alert('enter task to add');
+    }
+  }
+  cancel() {
+    this.popDisplay = false;
+    this.taskDisplay = true;
+  }
 }

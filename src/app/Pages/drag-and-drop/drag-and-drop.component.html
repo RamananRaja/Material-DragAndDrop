@@ -1,6 +1,33 @@
-<div class="wrapper">
-  <!--title-->
-  <p class="title">Angular Material - Drag and Drop</p>
+<!--new data-->
+<div class="new-data-container" [style.display]="popDisplay ? 'flex' : 'none'">
+  <p class="title">Add new Task</p>
+  <div class="new-data">
+    <p>Enter Task name</p>
+    <input #taskNameInput type="text" placeholder="task name" [value]="myDefaultValue"/>
+  </div>
+  <div class="new-data">
+    <p>Task type</p>
+    <select #taskTypeInput>
+      <option>Completed</option>
+      <option>In progress</option>
+      <option>To-do</option>
+    </select>
+  </div>
+  <div class="new-data">
+    <button (click)="save(taskNameInput.value, taskTypeInput.value)">
+      Save
+    </button>
+    <button (click)="cancel()">Cancel</button>
+  </div>
+</div>
+<div class="wrapper" [style.display]="taskDisplay ? 'block' : 'none'">
+  <div class="title-add_btn">
+    <!--title-->
+    <p class="title">Angular Material - Drag and Drop</p>
+    
+    <!--add item-->
+    <button class="addItem-btn" (click)="addItem()"><h2>+ add item</h2></button>
+  </div>
   <hr />
 
   <!--drag and drop-->
