@@ -109,12 +109,12 @@ export class DragAndDropComponent implements OnInit {
     console.log(this.inProgress);
   }
   deleteToDo(item: string) {
-    console.log("delete called - " + item);
+    //console.log("delete called - " + item);
     //this.completed.pop();
     const index = this.todo.indexOf(item);
     if (index > -1) {
       this.todo.splice(index, 1);
     }
-    console.log(this.todo);
+    //console.log(this.todo);
   }
 }
