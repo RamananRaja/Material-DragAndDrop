@@ -14,7 +14,7 @@ export class DragAndDropComponent implements OnInit {
   }
   popDisplay: boolean = false;
   taskDisplay: boolean = true;
-  myDefaultValue: string ="";
+  myDefaultValue: string = "";
   addItemForm = new FormGroup({
     taskName: new FormControl(),
     taskType: new FormControl()
@@ -46,14 +46,18 @@ export class DragAndDropComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      //console.log("else condition");
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
     }
+    // console.log(this.completed);
+    // console.log(this.inProgress);
+    // console.log(this.todo);
   }
   addItem() {
-    console.log("add item");
+    //console.log("add item");
     this.addItemForm.reset();
     this.popDisplay = true;
     this.taskDisplay = false;
@@ -61,14 +65,20 @@ export class DragAndDropComponent implements OnInit {
   save() {
     var taskNameInput = this.addItemForm.get('taskName')?.value;
     var taskTypeInput = this.addItemForm.get('taskType')?.value;
-    console.log(taskNameInput);
+    //console.log(taskNameInput);
     if (taskNameInput != null && taskNameInput != '') {
-      if(taskTypeInput == 'Completed')
+      if (taskTypeInput == 'Completed') {
         this.completed.push(taskNameInput);
-      else if(taskTypeInput == 'In progress')
+        //console.log(this.completed);
+      }
+      else if (taskTypeInput == 'In progress') {
         this.inProgress.push(taskNameInput);
-      else if(taskTypeInput == 'To-do')
+        //console.log(this.inProgress);
+      }
+      else if (taskTypeInput == 'To-do') {
         this.todo.push(taskNameInput);
+        //console.log(this.todo);
+      }
       this.popDisplay = false;
       this.taskDisplay = true;
     }
@@ -79,5 +89,32 @@ export class DragAndDropComponent implements OnInit {
   cancel() {
     this.popDisplay = false;
     this.taskDisplay = true;
+  }
+  deleteCompleted(item: string) {
+    console.log("delete called - " + item);
+    //this.completed.pop();
+    const index = this.completed.indexOf(item);
+    if (index > -1) {
+      this.completed.splice(index, 1);
+    }
+    console.log(this.completed);
+  }
+  deleteInProgress(item: string) {
+    console.log("delete called - " + item);
+    //this.completed.pop();
+    const index = this.inProgress.indexOf(item);
+    if (index > -1) {
+      this.inProgress.splice(index, 1);
+    }
+    console.log(this.inProgress);
+  }
+  deleteToDo(item: string) {
+    console.log("delete called - " + item);
+    //this.completed.pop();
+    const index = this.todo.indexOf(item);
+    if (index > -1) {
+      this.todo.splice(index, 1);
+    }
+    console.log(this.todo);
   }
 }

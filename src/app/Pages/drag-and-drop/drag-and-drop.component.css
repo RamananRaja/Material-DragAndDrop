@@ -26,6 +26,10 @@
     overflow-y: scroll;
     justify-content: space-around;
 }
+img {
+  width:30px;
+  height:30px;
+}
 /*Drag and Drop*/
 .content {
   margin-top:25px
@@ -153,4 +157,12 @@
 }
 .new-data option {
   font-size: 15px;
+}
+/*delete button*/
+.delete-btn {
+  border:none;
+  background-color: white;
+  border-radius: 20px 20px 20px 20px;
+  display: flex;
+  align-items: center;
 }

@@ -1,9 +1,18 @@
 <!--new data-->
-<div class="new-data-container" [formGroup]="addItemForm" [style.display]="popDisplay ? 'flex' : 'none'">
+<div
+  class="new-data-container"
+  [formGroup]="addItemForm"
+  [style.display]="popDisplay ? 'flex' : 'none'"
+>
   <p class="title">Add new Task</p>
   <div class="new-data">
     <p>Enter Task name</p>
-    <input formControlName="taskName" type="text" placeholder="task name" [value]="myDefaultValue"/>
+    <input
+      formControlName="taskName"
+      type="text"
+      placeholder="task name"
+      [value]="myDefaultValue"
+    />
   </div>
   <div class="new-data">
     <p>Task type</p>
@@ -22,7 +31,7 @@
   <div class="title-add_btn">
     <!--title-->
     <p class="title">Angular Material - Drag and Drop</p>
-    
+
     <!--add item-->
     <button class="addItem-btn" (click)="addItem()"><h2>+ add item</h2></button>
   </div>
@@ -43,6 +52,9 @@
       >
         <div class="example-box" *ngFor="let item of completed" cdkDrag>
           {{ item }}
+          <button class="delete-btn">
+            <img (click)="deleteCompleted(item)" src="../../../assets/cancel.png" />
+          </button>
         </div>
       </div>
     </div>
@@ -60,6 +72,9 @@
       >
         <div class="example-box" *ngFor="let item of inProgress" cdkDrag>
           {{ item }}
+          <button class="delete-btn">
+            <img (click)="deleteInProgress(item)" src="../../../assets/cancel.png" />
+          </button>
         </div>
       </div>
     </div>
@@ -77,6 +92,9 @@
       >
         <div class="example-box" *ngFor="let item of todo" cdkDrag>
           {{ item }}
+          <button class="delete-btn">
+            <img (click)="deleteToDo(item)" src="../../../assets/cancel.png" />
+          </button>
         </div>
       </div>
     </div>
